@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace写要实现的那个mapper的全类名  随便写也可以，不太好-->
+<mapper namespace="com.kkk.mapper.EmpMapper">
+    <select id="list" resultType="com.kkk.pojo.Emp">
+        select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp
+    </select>
+</mapper>
