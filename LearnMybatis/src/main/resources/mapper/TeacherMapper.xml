@@ -11,13 +11,13 @@
     <select id="getTeacherList2" resultMap="TeacherResultMap">
         select * from t_teacher t1 left join t_stu t2 on t1.tid = t2.teacherId
     </select>
-    <resultMap id="TeacherResultMap" type="Teacher">
+    <resultMap id="TeacherResultMap" type="Teacher" autoMapping="true">
         <id property="tid" column="tid"/>
-        <result property="tname" column="tname"/>
+<!--        <result property="tname" column="tname"/>-->
 <!--        对多关联-->
-        <collection property="studentList" ofType="Student">
+        <collection property="studentList" ofType="Student" autoMapping="true">
             <id property="sid" column="sid"/>
-            <result property="sname" column="sname"/>
+<!--            <result property="sname" column="sname"/>-->
         </collection>
     </resultMap>
 </mapper>

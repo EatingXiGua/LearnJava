@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace写要实现的那个mapper的全类名  随便写也可以，不太好-->
+<mapper namespace="com.kkk.mapper.StudentMapper">
+
+    <select id="getStudentList" resultMap="StudentResultMap">
+        select * from t_stu t1 inner join t_teacher t2 on t1.teacherId = t2.tid;
+    </select>
+
+    <resultMap id="StudentResultMap" type="Student" autoMapping="true">
+        <id property="sid" column="sid"/>
+<!--        <result property="sname" column="sname"/>-->
+<!--        对一关联-->
+        <association property="teacher" javaType="Teacher" autoMapping="true">
+            <id property="tid" column="tid"/>
+<!--            <result property="tname" column="tname"/>-->
+        </association>
+    </resultMap>
+
+<!--    对一关联的别名实现方式-->
+    <select id="getStudentList2" resultType="com.kkk.pojo.Student">
+        select
+            t1.*,
+            t2.tid as 'teacher.tid',
+            t2.tname as 'teacher.tname'
+        from t_stu t1
+                 inner join t_teacher t2
+                            on t1.teacherId = t2.tid
+    </select>
+</mapper>

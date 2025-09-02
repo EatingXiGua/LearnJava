@@ -6,4 +6,5 @@ import lombok.Data;
 public class Student {
     private Integer sid;
     private String sname;
+    private Teacher teacher;
 }
