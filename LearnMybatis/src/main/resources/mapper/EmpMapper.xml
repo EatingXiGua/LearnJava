@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace写要实现的那个mapper的全类名  随便写也可以，不太好-->
 <mapper namespace="com.kkk.mapper.EmpMapper">
+    <sql id="allColumns">
+        emp_id as empId, emp_name as empName, emp_salary as empSalary
+    </sql>
+    <update id="updateEmp">
+        update t_emp set emp_name=#{empName}, emp_salary=#{empSalary}
+        where emp_id=#{empId}
+    </update>
     <select id="list" resultType="com.kkk.pojo.Emp">
         select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp
     </select>
@@ -13,4 +20,46 @@
     <select id="getEmpByName2" resultType="com.kkk.pojo.Emp">
         select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp where emp_name='${value}'
     </select>
+    <delete id="deleteById">
+        delete from t_emp where emp_id = #{value}
+    </delete>
+    <insert id="addEmp">
+        insert into t_emp values (null,#{empName},#{empSalary})
+    </insert>
+
+    <select id="getEmpList" resultType="com.kkk.pojo.Emp">
+        select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp
+        where emp_name like concat('%',#{empName},'%') and emp_salary > #{minSalary}
+    </select>
+
+    <insert id="addEmp2">
+        insert into t_emp values (null,#{empName},#{empSalary})
+    </insert>
+
+    <select id="getEmpSalary" resultType="java.lang.Double">
+        select emp_salary from t_emp where emp_id = #{value}
+    </select>
+    <select id="getEmpById" resultType="com.kkk.pojo.Emp">
+        select <include refid="allColumns"/> from t_emp where emp_id = #{value}
+    </select>
+    <select id="getEmpSalaryList" resultType="java.lang.Double">
+        select emp_salary from t_emp
+    </select>
+    <select id="getMinMaxAvgSalary" resultType="java.util.Map">
+        select min(emp_salary) as minSalary,max(emp_salary) as maxSalary,avg(emp_salary) as avgSalary from t_emp
+    </select>
+
+    <insert id="addEmp3" useGeneratedKeys="true" keyProperty="empId">
+        insert into t_emp values (0,#{empName},#{empSalary})
+    </insert>
+
+    <select id="getEmpById2" resultType="Emp">
+        select * from t_emp where emp_id = #{value}
+    </select>
+    
+    <resultMap id="EmpResultMap" type="Emp">
+        <id column="emp_id" property="empId"/>
+        <result column="emp_name" property="empName"/>
+        <result column="emp_salary" property="empSalary"/>
+    </resultMap>
 </mapper>

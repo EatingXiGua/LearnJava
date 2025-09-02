@@ -6,7 +6,13 @@
 <configuration>
     <settings>
         <setting name="logImpl" value="SLF4J"/>
+<!--        启用驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+<!--    起别名，这样mapper映射文件中resultType的地方写全类名的时候可以更简单-->
+    <typeAliases>
+        <typeAlias type="com.kkk.pojo.Emp" alias="Emp"/>
+    </typeAliases>
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"></transactionManager>
