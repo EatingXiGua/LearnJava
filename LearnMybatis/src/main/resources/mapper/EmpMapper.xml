@@ -7,4 +7,10 @@
     <select id="list" resultType="com.kkk.pojo.Emp">
         select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp
     </select>
+    <select id="getEmpByName" resultType="com.kkk.pojo.Emp">
+        select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp where emp_name=#{value}
+    </select>
+    <select id="getEmpByName2" resultType="com.kkk.pojo.Emp">
+        select emp_id as empId, emp_name as empName, emp_salary as empSalary from t_emp where emp_name='${value}'
+    </select>
 </mapper>
