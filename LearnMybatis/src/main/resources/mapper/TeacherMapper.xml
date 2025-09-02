@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace写要实现的那个mapper的全类名  随便写也可以，不太好-->
+<mapper namespace="com.kkk.mapper.TeacherMapper">
+
+    <select id="getTeacherList" resultType="Teacher">
+        select * from t_teacher
+    </select>
+    <select id="getTeacherList2" resultMap="TeacherResultMap">
+        select * from t_teacher t1 left join t_stu t2 on t1.tid = t2.teacherId
+    </select>
+    <resultMap id="TeacherResultMap" type="Teacher">
+        <id property="tid" column="tid"/>
+        <result property="tname" column="tname"/>
+<!--        对多关联-->
+        <collection property="studentList" ofType="Student">
+            <id property="sid" column="sid"/>
+            <result property="sname" column="sname"/>
+        </collection>
+    </resultMap>
+</mapper>

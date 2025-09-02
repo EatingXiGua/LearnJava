@@ -11,7 +11,10 @@
     </settings>
 <!--    起别名，这样mapper映射文件中resultType的地方写全类名的时候可以更简单-->
     <typeAliases>
-        <typeAlias type="com.kkk.pojo.Emp" alias="Emp"/>
+<!--        <typeAlias type="com.kkk.pojo.Emp" alias="Emp"/>-->
+<!--        <typeAlias type="com.kkk.pojo.Teacher" alias="Teacher"/>-->
+<!--        表示这个包的所有类的别名就是类名本身-->
+        <package name="com.kkk.pojo"/>
     </typeAliases>
     <environments default="dev">
         <environment id="dev">
@@ -25,6 +28,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/EmpMapper.xml"/>
+<!--        <mapper resource="mapper/EmpMapper.xml"/>-->
+        <mapper resource="mapper/TeacherMapper.xml"/>
     </mappers>
 </configuration>
