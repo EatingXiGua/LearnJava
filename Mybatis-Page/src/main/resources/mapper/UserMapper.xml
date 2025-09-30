@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace写要实现的那个mapper的全类名  随便写也可以，不太好-->
+<mapper namespace="com.kkk.mapper.UserMapper">
+    <select id="findAll" resultType="com.kkk.pojo.User">
+        select id as Id, user_name as Name, user_age as Age from t_user
+    </select>
+</mapper>
